@@ -1,7 +1,9 @@
-
 <html>
     <head>
-
+ <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Explore our range of beauty products at M&M Beauty Boutique.">
+        <title>M&M Beauty Boutique - Products</title>
     </head>
     <body>
           
@@ -44,7 +46,6 @@
     </div>
     
                   <div style="height: 150px;"></div>
-                     Skin Care 
                   <div class="products-grid">
                     <div class="product-card">
                       <img src="images/soaps .jpg" alt="soaps">
@@ -95,6 +96,90 @@
                       </div>
                     </div>
                   </div>
+                  <style>
+                  .products-grid {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 32px;
+                    justify-content: center;
+                    margin: 40px 0;
+                    padding: 0 24px;
+                  }
+                  .product-card {
+                    background: #fff;
+                    border-radius: 18px;
+                    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+                    overflow: hidden;
+                    transition: box-shadow 0.2s, transform 0.2s;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 270px;
+                    margin-bottom: 24px;
+                    padding-bottom: 18px;
+                  }
+                  .product-card:hover {
+                    box-shadow: 0 8px 32px rgba(224,122,140,0.18);
+                    transform: translateY(-4px) scale(1.03);
+                  }
+                  .product-card img {
+                    width: 100%;
+                    height: 220px;
+                    object-fit: cover;
+                    border-bottom: 1px solid #f3f3f3;
+                    margin-top: 0;
+                    border-radius: 0;
+                    background: #fafafa;
+                    transition: transform 0.2s;
+                    cursor: pointer;
+                  }
+                  .product-card img:hover {
+                    transform: scale(1.04);
+                  }
+                  .product-info {
+                    padding: 16px 12px 0 12px;
+                    text-align: center;
+                  }
+                  .product-info h3 {
+                    font-family: 'Segoe UI', Arial, sans-serif;
+                    font-size: 1.2rem;
+                    margin: 8px 0 4px 0;
+                    color: #222;
+                    letter-spacing: 1px;
+                  }
+                  .price {
+                    color: #e07a8c;
+                    font-weight: bold;
+                    font-size: 1.1rem;
+                    margin-bottom: 10px;
+                  }
+                  .add-to-cart {
+                    background: linear-gradient(90deg, #e07a8c 0%, #f7c1c7 100%);
+                    color: #fff;
+                    border: none;
+                    border-radius: 20px;
+                    padding: 8px 24px;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    margin-top: 8px;
+                    transition: background 0.2s;
+                  }
+                  .add-to-cart:hover {
+                    background: linear-gradient(90deg, #f7c1c7 0%, #e07a8c 100%);
+                  }
+                  @media (max-width: 700px) {
+                    .products-grid {
+                      flex-direction: column;
+                      align-items: center;
+                      gap: 20px;
+                      padding: 0 4px;
+                    }
+                    .product-card {
+                      width: 98vw;
+                      max-width: 340px;
+                    }
+                  }
+                  </style>
 
                  
                   <div id="cart-btn">
@@ -146,12 +231,16 @@
                     flex-direction: column;
                     align-items: center;
                     padding-bottom: 18px;
-                  }
                   .product-card img {
                     width: 100%;
+                    max-width: 240px;
                     height: 220px;
                     object-fit: cover;
                     border-bottom: 1px solid #f3f3f3;
+                    margin-top: 16px;
+                    border-radius: 12px;
+                    background: #fafafa;
+                  }
                   }
                   .product-info {
                     padding: 16px 12px 0 12px;
@@ -306,109 +395,231 @@
                     }
                   }
                   </style>
-
+                  <div id="lightbox-modal" style="display:none; position:fixed; z-index:3000; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); align-items:center; justify-content:center;">
+                    <span id="lightbox-close" style="position:absolute; top:32px; right:48px; font-size:3rem; color:#fff; cursor:pointer; z-index:3100;">&times;</span>
+                    <img id="lightbox-img" src="" alt="Product Large" style="max-width:90vw; max-height:80vh; border-radius:18px; box-shadow:0 8px 32px rgba(0,0,0,0.25); background:#fff;" />
+                  </div>
                   <script>
-                  const cart = [];
-                  const cartBtn = document.getElementById('cart-btn');
-                  const cartModal = document.getElementById('cart-modal');
-                  const cartCount = document.getElementById('cart-count');
-                  const cartItemsDiv = document.getElementById('cart-items');
-                  const cartTotalDiv = document.getElementById('cart-total');
-                  const closeCart = document.querySelector('.close-cart');
-                  const checkoutBtn = document.getElementById('checkout-btn');
-                  const checkoutModal = document.getElementById('checkout-modal');
-                  const closeCheckout = document.querySelector('.close-checkout');
-                  const checkoutForm = document.getElementById('checkout-form');
-                  const orderSuccess = document.getElementById('order-success');
+                    
+                    const cart = [];
+                    const cartBtn = document.getElementById('cart-btn');
+                    const cartModal = document.getElementById('cart-modal');
+                    const cartCount = document.getElementById('cart-count');
+                    const cartItemsDiv = document.getElementById('cart-items');
+                    const cartTotalDiv = document.getElementById('cart-total');
+                    const closeCart = document.querySelector('.close-cart');
+                    const checkoutBtn = document.getElementById('checkout-btn');
+                    const checkoutModal = document.getElementById('checkout-modal');
+                    const closeCheckout = document.querySelector('.close-checkout');
+                    const checkoutForm = document.getElementById('checkout-form');
+                    const orderSuccess = document.getElementById('order-success');
 
-                  function updateCartCount() {
-                    cartCount.textContent = cart.reduce((sum, item) => sum + item.qty, 0);
-                  }
-
-                  function updateCartModal() {
-                    cartItemsDiv.innerHTML = '';
-                    if (cart.length === 0) {
-                      cartItemsDiv.innerHTML = '<p>Your cart is empty.</p>';
-                      cartTotalDiv.textContent = '';
-                      checkoutBtn.style.display = 'none';
-                      return;
+                    function updateCartCount() {
+                      cartCount.textContent = cart.reduce((sum, item) => sum + item.qty, 0);
                     }
-                    cart.forEach((item, idx) => {
-                      const div = document.createElement('div');
-                      div.className = 'cart-item';
-                      div.innerHTML = `
-                        <span>${item.name} x${item.qty}</span>
-                        <span>R${item.price * item.qty}
-                          <button class="remove-item" data-idx="${idx}">&times;</button>
-                        </span>
-                      `;
-                      cartItemsDiv.appendChild(div);
-                    });
-                    cartTotalDiv.textContent = 'Total: R' + cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-                    checkoutBtn.style.display = '';
-                  }
 
-                  document.querySelectorAll('.add-to-cart').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                      const name = this.getAttribute('data-name');
-                      const price = parseInt(this.getAttribute('data-price'));
-                      const found = cart.find(item => item.name === name);
-                      if (found) {
-                        found.qty += 1;
-                      } else {
-                        cart.push({ name, price, qty: 1 });
+                    function updateCartModal() {
+                      cartItemsDiv.innerHTML = '';
+                      if (cart.length === 0) {
+                        cartItemsDiv.innerHTML = '<p>Your cart is empty.</p>';
+                        cartTotalDiv.textContent = '';
+                        checkoutBtn.style.display = 'none';
+                        return;
                       }
-                      updateCartCount();
-                    });
-                  });
-
-                  cartBtn.addEventListener('click', () => {
-                    updateCartModal();
-                    cartModal.style.display = 'flex';
-                  });
-
-                  closeCart.addEventListener('click', () => {
-                    cartModal.style.display = 'none';
-                  });
-
-                  cartItemsDiv.addEventListener('click', function(e) {
-                    if (e.target.classList.contains('remove-item')) {
-                      const idx = parseInt(e.target.getAttribute('data-idx'));
-                      cart.splice(idx, 1);
-                      updateCartCount();
-                      updateCartModal();
+                      cart.forEach((item, idx) => {
+                        const div = document.createElement('div');
+                        div.className = 'cart-item';
+                        div.innerHTML = `
+                          <span>${item.name} x${item.qty}</span>
+                          <span>R${item.price * item.qty}
+                            <button class="remove-item" data-idx="${idx}">&times;</button>
+                          </span>
+                        `;
+                        cartItemsDiv.appendChild(div);
+                      });
+                      cartTotalDiv.textContent = 'Total: R' + cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+                      checkoutBtn.style.display = '';
                     }
-                  });
 
-                  checkoutBtn.addEventListener('click', () => {
-                    cartModal.style.display = 'none';
-                    checkoutModal.style.display = 'flex';
-                  });
+                    document.querySelectorAll('.add-to-cart').forEach(btn => {
+                      btn.addEventListener('click', function() {
+                        const name = this.getAttribute('data-name');
+                        const price = parseInt(this.getAttribute('data-price'));
+                        const found = cart.find(item => item.name === name);
+                        if (found) {
+                          found.qty += 1;
+                        } else {
+                          cart.push({ name, price, qty: 1 });
+                        }
+                        updateCartCount();
+                      });
+                    });
 
-                  closeCheckout.addEventListener('click', () => {
-                    checkoutModal.style.display = 'none';
-                    checkoutForm.reset();
-                    orderSuccess.style.display = 'none';
-                  });
+                    cartBtn.addEventListener('click', () => {
+                      updateCartModal();
+                      cartModal.style.display = 'flex';
+                    });
 
-                  checkoutForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    orderSuccess.style.display = 'block';
-                    setTimeout(() => {
+                    closeCart.addEventListener('click', () => {
+                      cartModal.style.display = 'none';
+                    });
+
+                    cartItemsDiv.addEventListener('click', function(e) {
+                      if (e.target.classList.contains('remove-item')) {
+                        const idx = parseInt(e.target.getAttribute('data-idx'));
+                        cart.splice(idx, 1);
+                        updateCartCount();
+                        updateCartModal();
+                      }
+                    });
+
+                    checkoutBtn.addEventListener('click', () => {
+                      cartModal.style.display = 'none';
+                      checkoutModal.style.display = 'flex';
+                    });
+
+                    closeCheckout.addEventListener('click', () => {
                       checkoutModal.style.display = 'none';
-                      cart.length = 0;
-                      updateCartCount();
                       checkoutForm.reset();
                       orderSuccess.style.display = 'none';
-                    }, 1800);
-                  });
+                    });
 
-                  window.onclick = function(event) {
-                    if (event.target === cartModal) cartModal.style.display = 'none';
-                    if (event.target === checkoutModal) checkoutModal.style.display = 'none';
-                  };
-                  updateCartCount();
+                    checkoutForm.addEventListener('submit', function(e) {
+                      e.preventDefault();
+                      orderSuccess.style.display = 'block';
+                      setTimeout(() => {
+                        checkoutModal.style.display = 'none';
+                        cart.length = 0;
+                        updateCartCount();
+                        checkoutForm.reset();
+                        orderSuccess.style.display = 'none';
+                      }, 1800);
+                    });
+
+                    window.onclick = function(event) {
+                      if (event.target === cartModal) cartModal.style.display = 'none';
+                      if (event.target === checkoutModal) checkoutModal.style.display = 'none';
+                    };
+                    updateCartCount();
+                    
+                    const lightboxModal = document.getElementById('lightbox-modal');
+                    const lightboxImg = document.getElementById('lightbox-img');
+                    const lightboxClose = document.getElementById('lightbox-close');
+                    const productCards = document.querySelectorAll('.product-card img');
+                    productCards.forEach(img => {
+                      img.addEventListener('click', () => {
+                        lightboxImg.src = img.src;
+                        lightboxModal.style.display = 'flex';
+                      });
+                    });
+                    lightboxClose.addEventListener('click', () => {
+                      lightboxModal.style.display = 'none';
+                      lightboxImg.src = '';
+                    });
+                    lightboxModal.addEventListener('click', (e) => {
+                      if (e.target === lightboxModal) {
+                        lightboxModal.style.display = 'none';
+                        lightboxImg.src = '';
+                      }
+                    });
+
+                    
+                    const headerContainer = document.querySelector('.header-container');
+                    const searchBtn = document.createElement('button');
+                    searchBtn.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search" style="width:28px;height:28px;vertical-align:middle;">';
+                    searchBtn.style.background = 'none';
+                    searchBtn.style.border = 'none';
+                    searchBtn.style.cursor = 'pointer';
+                    searchBtn.style.marginLeft = '18px';
+                    searchBtn.title = 'Search products';
+                    headerContainer.appendChild(searchBtn);
+
+                    
+                    const searchModal = document.createElement('div');
+                    searchModal.style.display = 'none';
+                    searchModal.style.position = 'fixed';
+                    searchModal.style.zIndex = '2100';
+                    searchModal.style.left = '0';
+                    searchModal.style.top = '0';
+                    searchModal.style.width = '100vw';
+                    searchModal.style.height = '100vh';
+                    searchModal.style.background = 'rgba(0,0,0,0.3)';
+                    searchModal.style.alignItems = 'center';
+                    searchModal.style.justifyContent = 'center';
+                    searchModal.innerHTML = `
+                      <div style="background:#fff; border-radius:16px; padding:32px 24px 24px 24px; min-width:320px; max-width:90vw; position:relative; box-shadow:0 8px 32px rgba(0,0,0,0.18);">
+                      <span id="close-search" style="position:absolute; top:12px; right:18px; font-size:2rem; color:#e07a8c; cursor:pointer;">&times;</span>
+                      <input id="search-input" type="text" placeholder="Search products..." style="width:90%;padding:10px;border-radius:8px;border:1px solid #e07a8c;font-size:1rem;">
+                      <div id="search-results" style="margin-top:18px;"></div>
+                      </div>
+                    `;
+                    document.body.appendChild(searchModal);
+
+                   
+                    searchBtn.addEventListener('click', () => {
+                      searchModal.style.display = 'flex';
+                      document.getElementById('search-input').focus();
+                    });
+
+                    document.getElementById('close-search').onclick = () => {
+                      searchModal.style.display = 'none';
+                      document.getElementById('search-input').value = '';
+                      document.getElementById('search-results').innerHTML = '';
+                    };
+                    searchModal.addEventListener('click', (e) => {
+                      if (e.target === searchModal) {
+                      searchModal.style.display = 'none';
+                      document.getElementById('search-input').value = '';
+                      document.getElementById('search-results').innerHTML = '';
+                      }
+                    });
+
+                    
+                    const products = Array.from(document.querySelectorAll('.product-card')).map(card => ({
+                      name: card.querySelector('h3').textContent,
+                      price: card.querySelector('.price').textContent,
+                      img: card.querySelector('img').src
+                    }));
+
+                    document.getElementById('search-input').addEventListener('input', function() {
+                      const val = this.value.trim().toLowerCase();
+                      const resultsDiv = document.getElementById('search-results');
+                      resultsDiv.innerHTML = '';
+                      if (!val) return;
+                      const matches = products.filter(p => p.name.toLowerCase().includes(val));
+                      if (matches.length === 0) {
+                      resultsDiv.innerHTML = '<p style="color:#e07a8c;">No products found.</p>';
+                      return;
+                      }
+                      matches.forEach(p => {
+                      const div = document.createElement('div');
+                      div.style.display = 'flex';
+                      div.style.alignItems = 'center';
+                      div.style.marginBottom = '12px';
+                      div.style.cursor = 'pointer';
+                      div.innerHTML = `
+                        <img src="${p.img}" alt="${p.name}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin-right:14px;">
+                        <span style="font-size:1.1rem;font-weight:500;color:#222;">${p.name}</span>
+                        <span style="margin-left:auto;color:#e07a8c;font-weight:bold;">${p.price}</span>
+                      `;
+                      div.onclick = () => {
+                  searchModal.style.display = 'none';
+                        document.getElementById('search-input').value = '';
+                        resultsDiv.innerHTML = '';
+                        const card = Array.from(document.querySelectorAll('.product-card')).find(c => c.querySelector('h3').textContent === p.name);
+                        if (card) {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        card.style.boxShadow = '0 0 0 4px #e07a8c, 0 4px 24px rgba(0,0,0,0.08)';
+                        setTimeout(() => {
+                          card.style.boxShadow = '';
+                        }, 1200);
+                        }
+                      };
+                      resultsDiv.appendChild(div);
+                      });
+                    });
                   </script>
+                  
                      
                      
               
@@ -432,3 +643,5 @@
         
 </body>
 </html>
+
+                 
