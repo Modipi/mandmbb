@@ -1,11 +1,11 @@
 
 <html>
-    <head>
+    
+   <head>
 
-    </head>
-    <body>
-          
-    <link rel="stylesheet" href="style.css">
+   </head> 
+       <body>    
+           <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="products.css">
     <link rel="stylesheet" href="aboutus.css">
     <link rel="stylesheet" href="contactus.css">
@@ -41,68 +41,69 @@
    
     </header>
     
+    <div style="height: 150px;"></div>
+    <div style="text-align:center; margin-bottom: 24px;"></div>
+        <button onclick="window.history.back()" style="background: linear-gradient(90deg, #e07a8c 0%, #f7c1c7 100%); color: #fff; border: none; border-radius: 20px; padding: 10px 32px; font-size: 1rem; cursor: pointer;">
+            &larr; Go Back
+        </button>
     </div>
-    
-                  <div style="height: 150px;"></div>
-                     Skin Care 
-                  <div class="products-grid">
-                    <div class="product-card">
-                      <img src="images/soaps .jpg" alt="soaps">
-                      <div class="product-info">
-                        <h3>Soap Combo</h3>
-                        <p class="price">R250</p>
-                        <button class="add-to-cart" data-name="Soap Combo" data-price="250">Add to Cart</button>
-                      </div>
-                    </div>
-                    <div class="product-card">
-                      <img src="images/skin care combo .jpg" alt="Skin Care Combo">
-                      <div class="product-info">
-                        <h3>Skin Care Combo</h3>
-                        <p class="price">R320</p>
-                        <button class="add-to-cart" data-name="Skin Care Combo" data-price="320">Add to Cart</button>
-                      </div>
-                    </div>
-                    <div class="product-card">
-                      <img src="images/sugarscrub.jpg" alt="sugarscrub">
-                      <div class="product-info">
-                        <h3>Sugar Scrub</h3>
-                        <p class="price">R280</p>
-                        <button class="add-to-cart" data-name="Sugar Scrub" data-price="280">Add to Cart</button>
-                      </div>
-                    </div>
-                    <div class="product-card">
-                      <img src="images/facedaycream.jpg" alt="facecream">
-                      <div class="product-info">
-                        <h3>Face Cream</h3>
-                        <p class="price">R200</p>
-                        <button class="add-to-cart" data-name="Face Cream" data-price="200">Add to Cart</button>
-                      </div>
-                    </div>
-                    <div class="product-card">
-                      <img src="images/bodyoil.jpg" alt="Nourishing Body Oil">
-                      <div class="product-info">
-                        <h3>Coconut Tissue Oil</h3>
-                        <p class="price">R180</p>
-                        <button class="add-to-cart" data-name="Coconut Tissue Oil" data-price="180">Add to Cart</button>
-                      </div>
-                    </div>
-                    <div class="product-card">
-                      <img src="images/septic salt .jpg" alt="Septic Salt">
-                      <div class="product-info">
-                        <h3>Bath Salt</h3>
-                        <p class="price">R220</p>
-                        <button class="add-to-cart" data-name="Bath Salt" data-price="220">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-
+    <div class="content-box">
+         
+                  <ins><i><h3>Make up products</h3></i></ins>
                  
+                <div class="products-grid">
+                    <div class="product-card">
+                        <img src="images/lipstick.jpg" alt="Lipstick">
+                        <div class="product-info">
+                            <h3>Lipstick [Red]</h3>
+                            <p class="price">R150</p>
+                            <button class="add-to-cart" data-name="Lipstick [Red]" data-price="150">Add to Cart</button>
+                        </div>
+                    </div>
+                  
+                    
+                    <div class="product-card">
+                        <img src="images/foundatiom.jpg" alt="Foundation">
+                        <div class="product-info">
+                            <h3>Foundation</h3>
+                            <p class="price">R200</p>
+                            <button class="add-to-cart" data-name="Foundation" data-price="200">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/powder.jpg" alt="Bake Powder">
+                        <div class="product-info">
+                            <h3>Bake Powder</h3>
+                            <p class="price">R100</p>
+                            <button class="add-to-cart" data-name="Bake Powder" data-price="100">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/makeup.jpg" alt="Brushes Set">
+                        <div class="product-info">
+                            <h3>Brushes [Set]</h3>
+                            <p class="price">R120</p>
+                            <button class="add-to-cart" data-name="Brushes [Set]" data-price="120">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/cream2.jpg" alt="Primer">
+                        <div class="product-info">
+                            <h3>Primer</h3>
+                            <p class="price">R80</p>
+                            <button class="add-to-cart" data-name="Primer" data-price="80">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+          
+
+                  
                   <div id="cart-btn">
                     <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="Cart" width="48" height="48">
                     <span id="cart-count">0</span>
                   </div>
 
-                 
+                
                   <div id="cart-modal" class="cart-modal">
                     <div class="cart-modal-content">
                       <span class="close-cart">&times;</span>
@@ -410,25 +411,19 @@
                   updateCartCount();
                   </script>
                      
-                     
-              
-                <div class="content-box"></div>
-                <div style="margin: 40px 0; text-align: center;"></div>
+                               
+                
+                
+                 </div>
+                  <div style="margin: 40px 0; text-align: center;"></div>
                   <a href="hair.html" style="display: inline-block; margin: 0 16px; padding: 12px 32px; background: linear-gradient(90deg, #e07a8c 0%, #f7c1c7 100%); color: #fff; border-radius: 24px; text-decoration: none; font-size: 1.1rem; font-family: 'Segoe UI', Arial, sans-serif; font-weight: 500; transition: background 0.2s;">
                     View Hair Products
                   </a>
-                  <a href="makeup.html" style="display: inline-block; margin: 0 16px; padding: 12px 32px; background: linear-gradient(90deg, #e07a8c 0%, #f7c1c7 100%); color: #fff; border-radius: 24px; text-decoration: none; font-size: 1.1rem; font-family: 'Segoe UI', Arial, sans-serif; font-weight: 500; transition: background 0.2s;">
-                    View Make Up Products
-                  </a>
-                </div>
-         <div style="height: 150px;"></div>
+                  <div style="height: 150px;"></div>
         
               <footer class="footer">
                Copyright &copy; 2025 M&M Beauty Boutique.
                Website designed by Modipi Boitumelo
-       </footer>
-
-
-        
-</body>
+                       </footer>
+        </body>
 </html>

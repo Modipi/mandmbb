@@ -13,18 +13,24 @@ header {
     padding: 1px 0;
     font-size: 24px;
     font-weight: bold;
+    height : 100px;
+    box-shadow: 0 2px 8px rgba(224, 6, 152, 0.863);
+    position: fixed;
+    width: 100%;
+ 
 }
 
 
 footer {
-    background-color: #ff69b4; 
-    color: rgb(21, 8, 202);
-    text-align: center;
-    padding: 0px 0;
+    padding: 1px;
+     text-align: center;
+      border-top: 2px solid rgb(250, 10, 158);
+      background-color: pink;
     position: fixed;
-    bottom: 0;
     width: 100%;
-    font-size: 14px;
+    bottom: 0;
+    box-shadow: 0 -2px 8px rgba(224, 6, 152, 0.863);
+    height: 35px;
 }
 .tt{ 
     text-align: center;
@@ -51,5 +57,32 @@ footer {
     footer {
         font-size: 10px;
         padding: 5px 0;
+    }
+}
+
+main, .content {
+    margin-top: 110px; 
+    margin-bottom: 45px;
+    padding: 20px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    main, .content {
+        padding: 10px;
+        margin-top: 90px;
+        margin-bottom: 40px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    main, .content {
+        padding: 5px;
+        margin-top: 80px;
+        margin-bottom: 38px;
     }
 }
