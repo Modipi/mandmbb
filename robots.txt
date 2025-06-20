@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://modipi.github.io/mandmbb/sitemap.xml
