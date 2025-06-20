@@ -1,12 +1,7 @@
-
 <html>
     
    <head>
- 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Explore our range of makeup products at M&M Beauty Boutique. Shop now for quality and affordable beauty essentials.">
-        <title>M&M Beauty Boutique - Makeup Products</title>
+
    </head> 
        <body>    
            <link rel="stylesheet" href="style.css">
@@ -45,6 +40,8 @@
    
     </header>
     
+    </div>
+    
     <div style="height: 150px;"></div>
     <div style="text-align:center; margin-bottom: 24px;"></div>
         <button onclick="window.history.back()" style="background: linear-gradient(90deg, #e07a8c 0%, #f7c1c7 100%); color: #fff; border: none; border-radius: 20px; padding: 10px 32px; font-size: 1rem; cursor: pointer;">
@@ -53,8 +50,7 @@
     </div>
     <div class="content-box">
          
-                  <ins><i><h3>Make up products</h3></i></ins>
-                 
+                 <h3> M&M Makeup Products</h3>
                 <div class="products-grid">
                     <div class="product-card">
                         <img src="images/lipstick.jpg" alt="Lipstick">
@@ -64,8 +60,14 @@
                             <button class="add-to-cart" data-name="Lipstick [Red]" data-price="150">Add to Cart</button>
                         </div>
                     </div>
-                  
-                    
+                    <div class="product-card">
+                        <img src="images/eyeliner.jpg" alt="Eyeshadow">
+                        <div class="product-info">
+                            <h3>Eyeshadow</h3>
+                            <p class="price">R150</p>
+                            <button class="add-to-cart" data-name="Eyeshadow" data-price="150">Add to Cart</button>
+                        </div>
+                    </div>
                     <div class="product-card">
                         <img src="images/foundatiom.jpg" alt="Foundation">
                         <div class="product-info">
@@ -413,168 +415,6 @@
                     if (event.target === checkoutModal) checkoutModal.style.display = 'none';
                   };
                   updateCartCount();
-
-                   const galleryImages = document.querySelectorAll('.product-card img');
-                  let lightbox, lightboxImg, lightboxClose;
-
-                  function createLightbox() {
-                    lightbox = document.createElement('div');
-                    lightbox.style.position = 'fixed';
-                    lightbox.style.top = 0;
-                    lightbox.style.left = 0;
-                    lightbox.style.width = '100vw';
-                    lightbox.style.height = '100vh';
-                    lightbox.style.background = 'rgba(0,0,0,0.7)';
-                    lightbox.style.display = 'flex';
-                    lightbox.style.alignItems = 'center';
-                    lightbox.style.justifyContent = 'center';
-                    lightbox.style.zIndex = 3000;
-                    lightbox.style.display = 'none';
-
-                    
-                    const contentBox = document.createElement('div');
-                    contentBox.style.background = '#fff';
-                    contentBox.style.borderRadius = '18px';
-                    contentBox.style.boxShadow = '0 8px 32px rgba(0,0,0,0.18)';
-                    contentBox.style.padding = '24px';
-                    contentBox.style.position = 'relative';
-                    contentBox.style.display = 'flex';
-                    contentBox.style.alignItems = 'center';
-                    contentBox.style.justifyContent = 'center';
-                    contentBox.style.maxWidth = '95vw';
-                    contentBox.style.maxHeight = '85vh';
-
-                    lightboxImg = document.createElement('img');
-                    lightboxImg.style.maxWidth = '80vw';
-                    lightboxImg.style.maxHeight = '70vh';
-                    lightboxImg.style.borderRadius = '14px';
-                    lightboxImg.style.boxShadow = '0 4px 24px rgba(0,0,0,0.12)';
-                    lightboxImg.style.background = '#fff';
-                    contentBox.appendChild(lightboxImg);
-
-                    lightboxClose = document.createElement('span');
-                    lightboxClose.textContent = '×';
-                    lightboxClose.style.position = 'absolute';
-                    lightboxClose.style.top = '12px';
-                    lightboxClose.style.right = '22px';
-                    lightboxClose.style.fontSize = '2.5rem';
-                    lightboxClose.style.color = '#e07a8c';
-                    lightboxClose.style.cursor = 'pointer';
-                    lightboxClose.style.fontWeight = 'bold';
-                    contentBox.appendChild(lightboxClose);
-
-                    lightbox.appendChild(contentBox);
-                    document.body.appendChild(lightbox);
-
-                    lightboxClose.onclick = () => { lightbox.style.display = 'none'; };
-                    lightbox.onclick = (e) => { if (e.target === lightbox) lightbox.style.display = 'none'; };
-                  }
-
-                  createLightbox();
-
-                  galleryImages.forEach(img => {
-                    img.style.cursor = 'zoom-in';
-                    img.addEventListener('click', function() {
-                      lightboxImg.src = this.src;
-                      lightboxImg.alt = this.alt;
-                      lightbox.style.display = 'flex';
-                    });
-                    });
-                   
-                    const headerContainer = document.querySelector('.header-container');
-                    const searchBtn = document.createElement('button');
-                    searchBtn.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search" style="width:28px;height:28px;vertical-align:middle;">';
-                    searchBtn.style.background = 'none';
-                    searchBtn.style.border = 'none';
-                    searchBtn.style.cursor = 'pointer';
-                    searchBtn.style.marginLeft = '18px';
-                    searchBtn.title = 'Search products';
-                    headerContainer.appendChild(searchBtn);
-
-                    
-                    const searchModal = document.createElement('div');
-                    searchModal.style.display = 'none';
-                    searchModal.style.position = 'fixed';
-                    searchModal.style.zIndex = '2100';
-                    searchModal.style.left = '0';
-                    searchModal.style.top = '0';
-                    searchModal.style.width = '100vw';
-                    searchModal.style.height = '100vh';
-                    searchModal.style.background = 'rgba(0,0,0,0.3)';
-                    searchModal.style.alignItems = 'center';
-                    searchModal.style.justifyContent = 'center';
-                    searchModal.innerHTML = `
-                      <div style="background:#fff; border-radius:16px; padding:32px 24px 24px 24px; min-width:320px; max-width:90vw; position:relative; box-shadow:0 8px 32px rgba(0,0,0,0.18);">
-                      <span id="close-search" style="position:absolute; top:12px; right:18px; font-size:2rem; color:#e07a8c; cursor:pointer;">&times;</span>
-                      <input id="search-input" type="text" placeholder="Search products..." style="width:90%;padding:10px;border-radius:8px;border:1px solid #e07a8c;font-size:1rem;">
-                      <div id="search-results" style="margin-top:18px;"></div>
-                      </div>
-                    `;
-                    document.body.appendChild(searchModal);
-
-                   
-                    searchBtn.addEventListener('click', () => {
-                      searchModal.style.display = 'flex';
-                      document.getElementById('search-input').focus();
-                    });
-
-                    document.getElementById('close-search').onclick = () => {
-                      searchModal.style.display = 'none';
-                      document.getElementById('search-input').value = '';
-                      document.getElementById('search-results').innerHTML = '';
-                    };
-                    searchModal.addEventListener('click', (e) => {
-                      if (e.target === searchModal) {
-                      searchModal.style.display = 'none';
-                      document.getElementById('search-input').value = '';
-                      document.getElementById('search-results').innerHTML = '';
-                      }
-                    });
-
-                    
-                    const products = Array.from(document.querySelectorAll('.product-card')).map(card => ({
-                      name: card.querySelector('h3').textContent,
-                      price: card.querySelector('.price').textContent,
-                      img: card.querySelector('img').src
-                    }));
-
-                    document.getElementById('search-input').addEventListener('input', function() {
-                      const val = this.value.trim().toLowerCase();
-                      const resultsDiv = document.getElementById('search-results');
-                      resultsDiv.innerHTML = '';
-                      if (!val) return;
-                      const matches = products.filter(p => p.name.toLowerCase().includes(val));
-                      if (matches.length === 0) {
-                      resultsDiv.innerHTML = '<p style="color:#e07a8c;">No products found.</p>';
-                      return;
-                      }
-                      matches.forEach(p => {
-                      const div = document.createElement('div');
-                      div.style.display = 'flex';
-                      div.style.alignItems = 'center';
-                      div.style.marginBottom = '12px';
-                      div.style.cursor = 'pointer';
-                      div.innerHTML = `
-                        <img src="${p.img}" alt="${p.name}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin-right:14px;">
-                        <span style="font-size:1.1rem;font-weight:500;color:#222;">${p.name}</span>
-                        <span style="margin-left:auto;color:#e07a8c;font-weight:bold;">${p.price}</span>
-                      `;
-                      div.onclick = () => {
-                  searchModal.style.display = 'none';
-                        document.getElementById('search-input').value = '';
-                        resultsDiv.innerHTML = '';
-                        const card = Array.from(document.querySelectorAll('.product-card')).find(c => c.querySelector('h3').textContent === p.name);
-                        if (card) {
-                        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        card.style.boxShadow = '0 0 0 4px #e07a8c, 0 4px 24px rgba(0,0,0,0.08)';
-                        setTimeout(() => {
-                          card.style.boxShadow = '';
-                        }, 1200);
-                        }
-                      };
-                      resultsDiv.appendChild(div);
-                      });
-                    });
                   </script>
                      
                                
