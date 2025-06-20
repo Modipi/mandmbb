@@ -1,6 +1,10 @@
 <html >
 <head>
-   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to M&M Beauty Boutique, your one-stop destination for quality beauty products. Explore our range of skincare, makeup, and hair products.">
+    <title>M&M Beauty Boutique</title>
+     
 </head>
 <body>
     <link rel="stylesheet" href="style.css">
@@ -40,11 +44,11 @@
     </header>
     
     </div>
-    <ins><i><h3>HOME</h3></i><i></ins>
+    
     <div class="content-box">
          <div style="height: 150px;"></div>
      
-
+ <ins><i><h3>Home</h3></i></ins>
 
 <section class="categories" style="background: linear-gradient(120deg, #fbeffb 60%, #f7e6f7 100%); display: flex; align-items: center; justify-content: space-between; padding: 40px 5% 40px 5%; border-radius: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.07);">
     <div style="max-width: 50%;">
@@ -92,33 +96,38 @@
 </section>
 
 
-<section style="margin: 32px 0;">
-    <h2 style="font-size: 1.7rem; color: #d83285; font-weight: 700; margin-bottom: 20px; text-align: center;">
-        latest
-    </h2>
-    <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
-        <div style="background: #fff; border-radius: 14px; box-shadow: 0 2px 12px rgba(214,51,132,0.07); padding: 18px; width: 180px; text-align: center;">
-            <img src="images/soaps .jpg" alt="skincare " style="width: 100px; border-radius: 10px; margin-bottom: 10px;">
-            <div style="font-weight: 600; color: #333;">SOAP</div>
-            <div style="color: #c52977; font-weight: 700; margin: 6px 0;">R120</div>
-            <a href="products.html" style="font-size: 0.95rem; color: #fff; background: #e6388f; padding: 6px 18px; border-radius: 20px; text-decoration: none;">View</a>
-        </div>
-        <div style="background: #fff; border-radius: 14px; box-shadow: 0 2px 12px rgba(214,51,132,0.07); padding: 18px; width: 180px; text-align: center;">
-            <img src="images/lipstick.jpg" alt="make um" style="width: 100px; border-radius: 10px; margin-bottom: 10px;">
-            <div style="font-weight: 600; color: #333;"> LIPSTICK</div>
-            <div style="color: #df3188; font-weight: 700; margin: 6px 0;">R150</div>
-            <a href="makeup.html" style="font-size: 0.95rem; color: #fff; background: #df3389; padding: 6px 18px; border-radius: 20px; text-decoration: none;">View</a>
-        </div>
-        <div style="background: #fff; border-radius: 14px; box-shadow: 0 2px 12px rgba(214,51,132,0.07); padding: 18px; width: 180px; text-align: center;">
-            <img src="images/waterwave34inch.jpg" alt="hair" style="width: 100px; border-radius: 10px; margin-bottom: 10px;">
-            <div style="font-weight: 600; color: #333;">WATER WAVE FRONTAL</div>
-            <div style="color: #cf2e7f; font-weight: 700; margin: 6px 0;">R3600</div>
-            <a href="hair.html" style="font-size: 0.95rem; color: #fff; background: #d63384; padding: 6px 18px; border-radius: 20px; text-decoration: none;">View</a>
-        </div>
-    
+
+<section class="slideshow-section" style="margin: 48px 0; display: flex; justify-content: center;">
+    <div id="product-slideshow" style="position: relative; width: 340px; height: 340px; background: #fff; border-radius: 18px; box-shadow: 0 4px 24px rgba(214,51,132,0.10); overflow: hidden;">
+        <img src="images/skin care combo .jpg" alt="Skin Care Combo" class="slide" style="width: 100%; height: 100%; object-fit: cover; border-radius: 18px; display: block;">
+        <img src="images/model2.jpg" alt="Makeup" class="slide" style="width: 100%; height: 100%; object-fit: cover; border-radius: 18px; display: none;">
+        <img src="images/layeredbob.jpg" alt="Hair" class="slide" style="width: 100%; height: 100%; object-fit: cover; border-radius: 18px; display: none;">
+        <button id="prev-slide" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background: rgba(214,51,132,0.7); color: #fff; border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 1.5rem; cursor: pointer;">&#8249;</button>
+        <button id="next-slide" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: rgba(214,51,132,0.7); color: #fff; border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 1.5rem; cursor: pointer;">&#8250;</button>
     </div>
 </section>
-
+<script>
+    const slides = document.querySelectorAll('#product-slideshow .slide');
+    let currentSlide = 0;
+    function showSlide(idx) {
+        slides.forEach((slide, i) => {
+            slide.style.display = i === idx ? 'block' : 'none';
+        });
+    }
+    document.getElementById('prev-slide').onclick = function() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    };
+    document.getElementById('next-slide').onclick = function() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    };
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }, 3500);
+    showSlide(currentSlide);
+</script>
 
 <section style="margin: 40px 0; text-align: center;">
     <div style="display: inline-block; background: linear-gradient(90deg, #d83486 60%, #fff 100%); color: #fff; padding: 18px 40px; border-radius: 30px; font-size: 1.2rem; font-weight: 600; box-shadow: 0 2px 12px rgba(214,51,132,0.10);">
@@ -136,7 +145,7 @@
     
     </div>
      <div style="height: 150px;"></div>
-    <link rel="stylesheet" href="responsive.css">
+    
        <footer class="footer">
                Copyright &copy; 2025 M&M Beauty Boutique.
                Website designed by Modipi Boitumelo
@@ -145,3 +154,7 @@
 
 </body>
 </html>
+        
+  
+
+
